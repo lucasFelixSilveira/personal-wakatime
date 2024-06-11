@@ -86,8 +86,7 @@ function gen_image(dado) {
         ctx.fillText('API From Wakatime', width / 2, height - 7);
 
         const buffer = canvas.toBuffer('image/png');
-        fs.writeFileSync('./wakatime_'+dado.split('/')[0].slice(1)+'.png', buffer);
-        resolve();
+        resolve(buffer);
       }
 
       generateImage();
@@ -103,8 +102,8 @@ const app = express();
 
 app.get('/timer', async (req, res) => {
   const { username, key } = req.query;
-  await gen_image(`@${username}/${key}`);
-  res.sendFile(__dirname + `/wakatime_${username}.png`);
+  res.set('Content-Type', 'image/png');
+  res.send(await gen_image(`@${username}/${key}`));
 })
 
 app.listen(8080);
