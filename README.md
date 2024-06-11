@@ -50,7 +50,6 @@ You must copy the field indicated in @ (without the @) into the `USERNAME` field
 <img width="500px" src="https://personal-wakatime.vercel.app/timer?username=lucasFelixSilveira&key=0dcd4a43-93dc-40ef-aedc-02527055b1ee" alt="exmple">
 
 <br>
-<br>
 
 ### Thanks for reading this README!
 #### If you liked it, how about exploring more? [Look at this!](https://github.com/BFlex-lang)
