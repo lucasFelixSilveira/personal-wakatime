@@ -1,6 +1,8 @@
 const { createCanvas, registerFont, loadImage } = require('canvas');
 const fs = require('fs');
 
+registerFont('./Arial.ttf', { family: 'Arial'});
+
 function gen_image(dado) {
   return new Promise((resolve, reject) => {
     fetch("https://wakatime.com/share/"+dado+".json", {
@@ -42,7 +44,7 @@ function gen_image(dado) {
           progressEndX += segmentWidth;
         });
 
-        ctx.font = '20px';
+        ctx.font = '20px Arial';
         ctx.fillStyle = 'white';
 
         const totalSeconds = filteredData.reduce((acc, item) => acc + item.total_seconds, 0);
@@ -81,7 +83,7 @@ function gen_image(dado) {
         ctx.fillRect(0, height - 30, width, 30);
 
         ctx.fillStyle = '#333333cc';
-        ctx.font = 'italic bold 20px';
+        ctx.font = 'italic bold 20px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('API From Wakatime', width / 2, height - 7);
 
