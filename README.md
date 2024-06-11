@@ -51,8 +51,6 @@ You must copy the field indicated in @ (without the @) into the `USERNAME` field
 
 <br>
 <br>
-<br>
-<br>
 
 ### Thanks for reading this README!
 #### If you liked it, how about exploring more? [Look at this!](https://github.com/BFlex-lang)
