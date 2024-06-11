@@ -1,9 +1,6 @@
 const { createCanvas, registerFont, loadImage } = require('canvas');
 const fs = require('fs');
 
-const fontPath = './fonts/arial.TTF';
-registerFont(fontPath, { family: 'Arial' });
-
 function gen_image(dado) {
   return new Promise((resolve, reject) => {
     fetch("https://wakatime.com/share/"+dado+".json", {
