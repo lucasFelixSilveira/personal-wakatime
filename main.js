@@ -1,7 +1,7 @@
 const { createCanvas, registerFont, loadImage } = require('canvas');
 const fs = require('fs');
 
-registerFont('./Arial.ttf', { family: 'Arial'});
+registerFont(__dirname + '/Arial.ttf', { family: 'Arial'});
 
 function gen_image(dado) {
   return new Promise((resolve, reject) => {
