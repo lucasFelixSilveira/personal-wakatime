@@ -10,7 +10,19 @@ function gen_image(dado) {
     }).then(x => x.json()).then(x => draw(x.data)).catch(reject);
 
     function draw(data) {
-      const filteredData = data.filter(item => item.percent > 0);
+      let filteredData = data;
+
+      filteredData = filteredData.map((item) => {
+        if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
+          if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
+            let i = item;
+            i.percent = 0; 
+            return i;
+          } 
+        } else return item;
+      })
+
+      filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
@@ -21,6 +33,7 @@ function gen_image(dado) {
         const progressBarPaddingBottom = 15;
         const width = 800;
         const height = 30 + Math.ceil(filteredData.length / 2) * itemHeight + padding * 2 + progressBarHeight + progressBarPaddingTop + progressBarPaddingBottom;
+        const totalSeconds = filteredData.reduce((acc, item) => acc + item.total_seconds, 0);
 
         const canvas = createCanvas(width, height);
         const ctx = canvas.getContext('2d');
@@ -38,7 +51,7 @@ function gen_image(dado) {
 
         let progressEndX = barStartX;
         filteredData.forEach(item => {
-          const segmentWidth = (item.percent / 100) * progressBarWidth;
+          const segmentWidth = (item.total_seconds / totalSeconds) * progressBarWidth;
           ctx.fillStyle = item.color;
           ctx.fillRect(progressEndX, barStartY, segmentWidth, progressBarHeight);
           progressEndX += segmentWidth;
@@ -47,7 +60,6 @@ function gen_image(dado) {
         ctx.font = '20px Arial';
         ctx.fillStyle = 'white';
 
-        const totalSeconds = filteredData.reduce((acc, item) => acc + item.total_seconds, 0);
         let yPositionLeft = padding + progressBarPaddingTop + progressBarHeight + progressBarPaddingBottom + 20;
         let yPositionRight = padding + progressBarPaddingTop + progressBarHeight + progressBarPaddingBottom + 20;
 
