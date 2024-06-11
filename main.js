@@ -45,7 +45,7 @@ function gen_image(dado) {
           progressEndX += segmentWidth;
         });
 
-        ctx.font = '20px Arial';
+        ctx.font = '20px sans-serif';
         ctx.fillStyle = 'white';
 
         const totalSeconds = filteredData.reduce((acc, item) => acc + item.total_seconds, 0);
@@ -84,7 +84,7 @@ function gen_image(dado) {
         ctx.fillRect(0, height - 30, width, 30);
 
         ctx.fillStyle = '#333333cc';
-        ctx.font = 'italic bold 20px Arial';
+        ctx.font = 'italic bold 20px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('API From Wakatime', width / 2, height - 7);
 
