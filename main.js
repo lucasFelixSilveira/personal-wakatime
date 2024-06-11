@@ -2,7 +2,7 @@ const { createCanvas, registerFont, loadImage } = require('canvas');
 const fs = require('fs');
 
 const fontPath = './fonts/arial.TTF';
-registerFont(fontPath, { family: 'SecondArial' });
+registerFont(fontPath, { family: 'Arial' });
 
 function gen_image(dado) {
   return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ function gen_image(dado) {
           progressEndX += segmentWidth;
         });
 
-        ctx.font = '20px SecondArial';
+        ctx.font = '20px Arial';
         ctx.fillStyle = 'white';
 
         const totalSeconds = filteredData.reduce((acc, item) => acc + item.total_seconds, 0);
@@ -84,7 +84,7 @@ function gen_image(dado) {
         ctx.fillRect(0, height - 30, width, 30);
 
         ctx.fillStyle = '#333333cc';
-        ctx.font = 'italic bold 20px SecondArial';
+        ctx.font = 'italic bold 20px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('API From Wakatime', width / 2, height - 7);
 
