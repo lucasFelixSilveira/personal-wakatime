@@ -19,7 +19,7 @@ function gen_image(dado) {
             i.percent = 0; 
             return i;
           } else {
-            if( item.name ) {
+            if( item.name == "Carla" ) {
               let i = item;
               i.color = "#1d1d1d";
               return i;
