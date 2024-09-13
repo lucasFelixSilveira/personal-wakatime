@@ -18,7 +18,13 @@ function gen_image(dado) {
             let i = item;
             i.percent = 0; 
             return i;
-          } 
+          } else {
+            if( item.name ) {
+              let i = item;
+              i.color = "#1d1d1d";
+              return i;
+            }
+          }
         } else return item;
       })
 
