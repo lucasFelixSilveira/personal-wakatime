@@ -100,7 +100,21 @@ function gen_image(dado) {
       console.log(filteredData[2]);
       filteredData = sortByTotalSeconds(filteredData)
       console.log(filteredData[2]);
-      filteredData = data.filter(item => item.percent > 0);
+      // filteredData = data.filter(item => item.percent > 0);
+      filteredData = sortByTotalSeconds([
+        {
+          "name": "Rust",
+          "total_seconds": 2.606812
+        },
+        {
+          "name": "Python",
+          "total_seconds": 1231
+        },
+        {
+            "name": "JavaScript",
+            "total_seconds": 123
+        }
+      ]);
 
       function generateImage() {
         const itemHeight = 50;
