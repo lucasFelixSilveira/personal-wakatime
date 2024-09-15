@@ -16,12 +16,12 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
             let i = item;
-            i.total_seconds = 0; 
+            i.delete = true; 
             return i;
           } else {
             if( item.name == "Carla" ) {
               let i = item;
-              i.delete = true; 
+              i.color = "#1d1d1d";
               return i;
             } else item;
           }
@@ -84,7 +84,7 @@ function gen_image(dado) {
       const nArray = [];
       let i = 0;
       while( i < filteredData.length ) {
-        if( filteredData[i] && filteredData[i].delete ) 
+        if( filteredData[i] && !filteredData[i].delete ) 
           nArray.push(filteredData[i++])
         else i++;
       }
