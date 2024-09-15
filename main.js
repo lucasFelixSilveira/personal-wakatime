@@ -153,11 +153,11 @@ function gen_image(dado) {
             yPositionLeft += itemHeight;
           } else {
             ctx.beginPath();
-            ctx.arc(width - 350, yPositionRight - 7, 10, 0, Math.PI * 2, true);
+            ctx.arc(width - 330, yPositionRight - 7, 10, 0, Math.PI * 2, true);
             ctx.fill();
 
             ctx.fillStyle = 'white';
-            ctx.fillText(text, width - 300, yPositionRight);
+            ctx.fillText(text, width - 310, yPositionRight);
 
             yPositionRight += itemHeight;
           }
