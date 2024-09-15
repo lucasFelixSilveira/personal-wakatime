@@ -19,11 +19,9 @@ function gen_image(dado) {
             i.delete = true; 
             return i;
           } else {
-            if( item.name == "Carla" ) {
-              let i = item;
-              i.color = "#1d1d1d";
-              return i;
-            } else item;
+            let i = item;
+            i.color = item.name == "Carla" ? "#1d1d1d" : i.color;
+            return i;
           }
         })
       } 
