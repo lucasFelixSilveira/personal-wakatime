@@ -13,6 +13,10 @@ function gen_image(dado) {
       let filteredData = data;
 
       filteredData = filteredData.map((item) => {
+        if( item.name == "newLISP" ) {
+          item.name = "eLisp"
+        }
+
         if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
             let i = item;
@@ -25,10 +29,51 @@ function gen_image(dado) {
               return i;
             }
           }
+        } else if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
+          if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
+            let i = item;
+            i.percent = 0; 
+            return i;
+          } else if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
+            let i = item;
+            const add = (() => {
+              switch(item.name) {
+                case "C": 
+                  return 72
+                case "C++":
+                  return 90
+                case "Java": 
+                  return 38
+                case "Haskell":
+                  return 11
+                case "Makefile":
+                  return 30
+                case "eLisp":
+                  return 15
+              }
+            })();
+            i.hours += add;
+            return i;
+          }
         } else return item;
       })
 
-      filteredData = data.filter(item => item.percent > 0);
+      filteredData = filteredData.filter(item => item.percent > 0);
+
+      if( dado.split('/')[0].slice(1) == 'EngBandeira' )
+        {
+          let total = 0;
+          let i = 0;
+          while( i < filteredData.length ) {
+            total += filteredData[i++].hours
+          }
+          
+          filteredData = filteredData.map((item) => {
+            const calculo = item.hours / total * 100;
+            item.percent = calculo;
+          })
+        }
+
 
       function generateImage() {
         const itemHeight = 50;
