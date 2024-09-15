@@ -80,7 +80,7 @@ function gen_image(dado) {
       const nArray = [];
       let i = 0;
       while( i < filteredData.length ) {
-        if( filteredData[i] && !filteredData[i].delete ) 
+        if( filteredData[i] && !filteredData[i].delete && filteredData[i].hours > Math.pow(60, 2) ) 
           nArray.push(filteredData[i++])
         else i++;
       }
