@@ -58,18 +58,6 @@ function gen_image(dado) {
         } else return item;
       })
 
-      let i = 0;
-      let total = 0;
-      while( i < filteredData.length ) {
-        total += filteredData[i++].hours
-      }
-
-      filteredData = filteredData.map((item) => {
-        const calculo = item.hours / total * 100;
-        item.percent = calculo;
-        return item;
-      })
-
       filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
