@@ -80,6 +80,7 @@ function gen_image(dado) {
           filteredData = filteredData.map((item) => {
             const calculo = item.hours / total * 100;
             item.percent = calculo;
+            return item;
           })
         }
 
