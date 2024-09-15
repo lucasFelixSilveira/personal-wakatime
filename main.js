@@ -12,8 +12,6 @@ function gen_image(dado) {
     function draw(data) {
       let filteredData = data;
 
-      console.log(filteredData);
-
       if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
         filteredData = filteredData.map((item) => {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
