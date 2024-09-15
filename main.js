@@ -100,8 +100,6 @@ function gen_image(dado) {
       console.log(filteredData.slice(0,5));
       filteredData = sortByTotalSeconds(filteredData)
       console.log(filteredData.slice(0,5));
-      filteredData = data.filter(item => item.percent > 0);
-      console.log(filteredData.slice(0,5));
 
       function generateImage() {
         const itemHeight = 50;
