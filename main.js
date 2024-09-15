@@ -83,6 +83,40 @@ function gen_image(dado) {
             } else item;
           }
         })
+
+        let inOrder = [];
+        let i = 0;
+        while( i < filteredData.length ) {
+          let j = 0;
+          while( j < inOrder.length ) {
+            if( inOrder[j].total_seconds > filteredData[i].total_seconds ) {
+              const start = inOrder.slice(0,inOrder.length-j);
+              const end = inOrder.slice(j);
+              const nOrder = [];
+              let o = 0;
+              while( o < start.length ) {
+                nOrder.push(start[o++]);
+              }
+              nOrder.push(filteredData[i++])
+              o = 0;
+              while( o < end.length ) {
+                nOrder.push(end[o++]);
+              }
+              inOrder = nOrder;
+              break;
+            } else j++;
+          }
+          if( j == inOrder.length ) {
+            const nOrder = [];
+            nOrder.push(filteredData[i++]);
+            let o = 0;
+            while( o < inOrder.length ) {
+              nOrder.push(inOrder[o++]);
+            }
+            inOrder = nOrder;
+            break;
+          }
+        }
       }
 
       console.log(filteredData);
