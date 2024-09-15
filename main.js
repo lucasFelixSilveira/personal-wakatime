@@ -57,7 +57,6 @@ function gen_image(dado) {
                 const add = 120;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
-                i.name = "eLisp";
                 break;
               }
             }
