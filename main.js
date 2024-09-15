@@ -58,7 +58,6 @@ function gen_image(dado) {
         } else return item;
       })
 
-      filteredData = filteredData.filter(item => item.percent > 0);
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' )
         {
@@ -74,6 +73,7 @@ function gen_image(dado) {
           })
         }
 
+      filteredData = filteredData.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
