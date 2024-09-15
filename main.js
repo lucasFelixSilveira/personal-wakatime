@@ -83,7 +83,7 @@ function gen_image(dado) {
         })
       }
 
-      const sortedArray = [...array];
+      const sortedArray = [...filteredData];
       
       let n = sortedArray.length;
       let swapped;
