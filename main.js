@@ -81,8 +81,17 @@ function gen_image(dado) {
             } else item;
           }
         })
-
       }
+
+      const nArray = [];
+      let i = 0;
+      while( i < filteredData.length ) {
+        if( filteredData[i] ) 
+          nArray.push(filteredData[i++])
+        else i++;
+      }
+      filteredData = nArray;
+
       
       const realign = filteredData.map(item => item.hours);
       realign.sort((a, b) => b - a);
