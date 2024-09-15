@@ -65,10 +65,11 @@ function gen_image(dado) {
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
-              case "Assembly": {
-                const add = 15;
+              case "newLISP": {
+                const add = 27;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
+                i.name = "eLisp";
                 break;
               }
             }
