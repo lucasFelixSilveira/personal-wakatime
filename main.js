@@ -35,7 +35,7 @@ function gen_image(dado) {
             i.delete = true; 
             return i;
           } else {
-            if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
+            if( ["C", "C++", "Haskell", "Makefile", "Java", "Assembly"].includes(item.name) ) {
               let i = item;
               switch(item.name) {
                 case "C": { 
@@ -68,7 +68,7 @@ function gen_image(dado) {
                   i.total_seconds += (60^2) * add;
                   break;
                 }
-                case "eLisp": {
+                case "Assembly": {
                   const add = 15;
                   i.hours += add;
                   i.total_seconds += (60^2) * add;
