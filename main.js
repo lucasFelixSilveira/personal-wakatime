@@ -144,7 +144,7 @@ function gen_image(dado) {
           ctx.fillStyle = item.color;
           if (index < halfIndex) {
             ctx.beginPath();
-            ctx.arc(20, yPositionLeft - 7, 10, 0, Math.PI * 2, true);
+            ctx.arc(30, yPositionLeft - 7, 10, 0, Math.PI * 2, true);
             ctx.fill();
 
             ctx.fillStyle = 'white';
@@ -153,7 +153,7 @@ function gen_image(dado) {
             yPositionLeft += itemHeight;
           } else {
             ctx.beginPath();
-            ctx.arc(width - 300, yPositionRight - 7, 10, 0, Math.PI * 2, true);
+            ctx.arc(width - 350, yPositionRight - 7, 10, 0, Math.PI * 2, true);
             ctx.fill();
 
             ctx.fillStyle = 'white';
