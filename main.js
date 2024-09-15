@@ -24,6 +24,7 @@ function gen_image(dado) {
             return i;
           } else {
             if( item.name == "Carla" ) {
+              let i = item;
               i.color = "#1d1d1d";
               return i;
             }
@@ -51,7 +52,7 @@ function gen_image(dado) {
             })();
             i.hours += add;
             return i;
-          }
+          } else return item;
         } else return item;
       })
 
