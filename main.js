@@ -66,6 +66,8 @@ function gen_image(dado) {
             { nData.push(filteredData[j++]) }
           else { j++; }
         }
+      
+      filteredData = nData;
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' )
         {
