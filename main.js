@@ -16,7 +16,7 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
             let i = item;
-            i.hours = 0; 
+            i.total_seconds = 0; 
             return i;
           } else {
             if( item.name == "Carla" ) {
@@ -32,7 +32,7 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
             let i = item;
-            i.hours = 0; 
+            i.total_seconds = 0; 
             return i;
           } else {
             if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
@@ -84,7 +84,7 @@ function gen_image(dado) {
       const nArray = [];
       let i = 0;
       while( i < filteredData.length ) {
-        if( filteredData[i] && filteredData[i].hours >= 1 ) 
+        if( filteredData[i] && filteredData[i].total_seconds >= 60 ) 
           nArray.push(filteredData[i++])
         else i++;
       }
@@ -97,9 +97,8 @@ function gen_image(dado) {
       
         return array.sort((a, b) => b.total_seconds - a.total_seconds);
       }
-      console.log(filteredData.slice(0,5));
+
       filteredData = sortByTotalSeconds(filteredData)
-      console.log(filteredData.slice(0,5));
 
       function generateImage() {
         const itemHeight = 50;
