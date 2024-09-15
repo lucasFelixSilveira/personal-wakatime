@@ -27,6 +27,24 @@ function gen_image(dado) {
       } 
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
+        if(! filteredData.map(x => x.name).includes("Java") ) {
+          filteredData.push({
+            name: "Java",
+            minutes: 32,
+            hours: 0,
+            total_seconds: 0,
+            color: "#b07219"
+          })
+        }
+        if(! filteredData.map(x => x.name).includes("Carla") ) {
+          filteredData.push({
+            name: "Carla",
+            minutes: 7,
+            hours: 86,
+            total_seconds: Math.pow(60,2) * 86,
+            color: "#1d1d1d"
+          })
+        }
         filteredData = filteredData.map((item) => {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
             let i = item;
