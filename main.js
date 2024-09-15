@@ -90,27 +90,7 @@ function gen_image(dado) {
       }
       filteredData = nArray;
       
-      const sortedArray = [...filteredData];
-      
-      let n = sortedArray.length;
-      let swapped;
-
-      do {
-        swapped = false;
-        let i = 0;
-
-        while (i < n - 1) {
-          if (sortedArray[i].total_seconds < sortedArray[i + 1].total_seconds) {
-            [sortedArray[i], sortedArray[i + 1]] = [sortedArray[i + 1], sortedArray[i]];
-            swapped = true;
-          }
-          i++;
-        }
-        n--; 
-      } while (swapped);
-
-      filteredData = sortedArray;
-
+      filteredData = filteredData.sort((a, b) => b.total_seconds - a.total_seconds);
       filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
