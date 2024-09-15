@@ -58,6 +58,14 @@ function gen_image(dado) {
         } else return item;
       })
 
+      const nData = [];
+      let j = 0;
+      while( j < filteredData.legnth ) 
+        {
+          if( item.percent != 0 ) 
+            { nData.push(filteredData[j++]) }
+          else { j++; }
+        }
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' )
         {
@@ -72,8 +80,6 @@ function gen_image(dado) {
             item.percent = calculo;
           })
         }
-
-      filteredData = filteredData.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
