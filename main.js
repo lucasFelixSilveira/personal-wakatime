@@ -117,6 +117,8 @@ function gen_image(dado) {
             break;
           }
         }
+
+        filteredData = inOrder;
       }
 
       console.log(filteredData);
