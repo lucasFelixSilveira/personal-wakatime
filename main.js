@@ -21,7 +21,7 @@ function gen_image(dado) {
           } else {
             if( item.name == "Carla" ) {
               let i = item;
-              i.color = "#1d1d1d";
+              i.delete = true; 
               return i;
             } else item;
           }
@@ -32,7 +32,7 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
             let i = item;
-            i.total_seconds = 0; 
+            i.delete = true; 
             return i;
           } else {
             if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
@@ -84,7 +84,7 @@ function gen_image(dado) {
       const nArray = [];
       let i = 0;
       while( i < filteredData.length ) {
-        if( filteredData[i] && filteredData[i].total_seconds >= 60 ) 
+        if( filteredData[i] && filteredData[i].delete ) 
           nArray.push(filteredData[i++])
         else i++;
       }
@@ -92,7 +92,7 @@ function gen_image(dado) {
       
       function sortByTotalSeconds(array) {
         if (!Array.isArray(array) || array.length === 0) {
-            throw new Error('Input should be a non-empty array');
+          throw new Error('Input should be a non-empty array');
         }
       
         return array.sort((a, b) => b.total_seconds - a.total_seconds);
