@@ -132,7 +132,7 @@ function gen_image(dado) {
 
         filteredData.forEach((item, index) => {
           const percentOfTotal = ((item.total_seconds / totalSeconds) * 100).toFixed(2);
-          const text = `${item.name}: ${item.text} (${percentOfTotal}%)`;
+          const text = `${item.name}: ${item.hours} hrs ${item.minutes} mins (${percentOfTotal}%)`;
 
           ctx.fillStyle = item.color;
           if (index < halfIndex) {
