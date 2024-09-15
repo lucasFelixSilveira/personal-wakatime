@@ -83,6 +83,15 @@ function gen_image(dado) {
         })
       }
 
+      const nArray = [];
+      let i = 0;
+      while( i < filteredData.length ) {
+        if( filteredData[i] ) 
+          nArray.push(filteredData[i++])
+        else i++;
+      }
+      filteredData = nArray;
+      
       const sortedArray = [...filteredData];
       
       let n = sortedArray.length;
@@ -103,11 +112,6 @@ function gen_image(dado) {
       } while (swapped);
 
       filteredData = sortedArray;
-
-      
-      const realign = filteredData.map(item => item.hours);
-      realign.sort((a, b) => b - a);
-      filteredData = realign;
 
       filteredData = data.filter(item => item.percent > 0);
 
