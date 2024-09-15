@@ -12,6 +12,8 @@ function gen_image(dado) {
     function draw(data) {
       let filteredData = data;
 
+      console.log(filteredData);
+
       if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
         filteredData = filteredData.map((item) => {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
@@ -27,6 +29,8 @@ function gen_image(dado) {
           }
         })
       } 
+
+      console.log(filteredData);
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
         filteredData = filteredData.map((item) => {
@@ -81,7 +85,9 @@ function gen_image(dado) {
         })
       }
 
-      filteredData = filteredData.filter(item => item.percent > 0);
+      console.log(filteredData);
+
+      filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
