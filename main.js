@@ -40,7 +40,7 @@ function gen_image(dado) {
               case "C": { 
                 const add = 72;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "C++": {
