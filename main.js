@@ -97,24 +97,11 @@ function gen_image(dado) {
       
         return array.sort((a, b) => b.total_seconds - a.total_seconds);
       }
-      console.log(filteredData[2]);
+      console.log(filteredData.slice(0,5));
       filteredData = sortByTotalSeconds(filteredData)
-      console.log(filteredData[2]);
-      // filteredData = data.filter(item => item.percent > 0);
-      filteredData = sortByTotalSeconds([
-        {
-          "name": "Rust",
-          "total_seconds": 2.606812
-        },
-        {
-          "name": "Python",
-          "total_seconds": 1231
-        },
-        {
-            "name": "JavaScript",
-            "total_seconds": 123
-        }
-      ]);
+      console.log(filteredData.slice(0,5));
+      filteredData = data.filter(item => item.percent > 0);
+      console.log(filteredData.slice(0,5));
 
       function generateImage() {
         const itemHeight = 50;
