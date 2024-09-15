@@ -58,6 +58,7 @@ function gen_image(dado) {
         } else return item;
       })
 
+      let i = 0;
       let total = 0;
       while( i < filteredData.length ) {
         total += filteredData[i++].hours
