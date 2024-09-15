@@ -84,8 +84,8 @@ function gen_image(dado) {
           }
         })
 
-        let inOrder = [];
-        let i = 0;
+        let inOrder = [filteredData[0]];
+        let i = 1;
         while( i < filteredData.length ) {
           let j = 0;
           while( j < inOrder.length ) {
