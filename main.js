@@ -13,29 +13,26 @@ function gen_image(dado) {
       let filteredData = data;
 
       filteredData = filteredData.map((item) => {
+        let i = item;
         if( item.name == "newLISP" ) {
-          item.name = "eLisp"
+          i.name = "eLisp"
         }
 
         if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
-            let i = item;
             i.percent = 0; 
             return i;
           } else {
             if( item.name == "Carla" ) {
-              let i = item;
               i.color = "#1d1d1d";
               return i;
             }
           }
         } else if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
-            let i = item;
             i.percent = 0; 
             return i;
           } else if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
-            let i = item;
             const add = (() => {
               switch(item.name) {
                 case "C": 
