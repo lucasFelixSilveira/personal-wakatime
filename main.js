@@ -16,7 +16,7 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
             let i = item;
-            i.percent = 0; 
+            i.hours = 0; 
             return i;
           } else {
             if( item.name == "Carla" ) {
@@ -32,7 +32,7 @@ function gen_image(dado) {
         filteredData = filteredData.map((item) => {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
             let i = item;
-            i.percent = 0; 
+            i.hours = 0; 
             return i;
           } else {
             if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
