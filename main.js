@@ -58,31 +58,13 @@ function gen_image(dado) {
         } else return item;
       })
 
-      const nData = [];
-      let j = 0;
-      while( j < filteredData.legnth ) 
-        {
-          if( item.percent != 0 ) 
-            { nData.push(filteredData[j++]) }
-          else { j++; }
-        }
-      
-      filteredData = nData;
+      filteredData = filteredData.map((item) => {
+        const calculo = item.hours / total * 100;
+        item.percent = calculo;
+        return item;
+      })
 
-      if( dado.split('/')[0].slice(1) == 'EngBandeira' )
-        {
-          let total = 0;
-          let i = 0;
-          while( i < filteredData.length ) {
-            total += filteredData[i++].hours
-          }
-          
-          filteredData = filteredData.map((item) => {
-            const calculo = item.hours / total * 100;
-            item.percent = calculo;
-            return item;
-          })
-        }
+      filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
