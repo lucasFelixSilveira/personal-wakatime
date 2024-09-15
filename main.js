@@ -12,7 +12,7 @@ function gen_image(dado) {
     function draw(data) {
       let filteredData = data;
 
-      filteredData = filteredData.map((item) => {
+      filteredData = filteredData.map(async (item) => {
         let i = item;
         if( item.name == "newLISP" ) {
           i.name = "eLisp"
@@ -34,22 +34,22 @@ function gen_image(dado) {
             i.percent = 0; 
             return i;
           } else if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
-            const add = (() => {
+            const add = await (() => new Promise((resolve) => {
               switch(item.name) {
                 case "C": 
-                  return 72
+                  return resolve(72)
                 case "C++":
-                  return 90
+                  return resolve(90)
                 case "Java": 
-                  return 38
+                  return resolve(38)
                 case "Haskell":
-                  return 11
+                  return resolve(11)
                 case "Makefile":
-                  return 30
+                  return resolve(30)
                 case "eLisp":
-                  return 15
+                  return resolve(15)
               }
-            })();
+            }))();
             i.hours += add;
             i.total_seconds += (60^2) * add;
             return i;
