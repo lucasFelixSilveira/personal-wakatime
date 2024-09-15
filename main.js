@@ -58,8 +58,6 @@ function gen_image(dado) {
         } else return item;
       })
 
-      filteredData = data.filter(item => item.percent > 0);
-
       function generateImage() {
         const itemHeight = 50;
         const padding = 20;
