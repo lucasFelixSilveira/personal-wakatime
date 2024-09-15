@@ -90,7 +90,15 @@ function gen_image(dado) {
       }
       filteredData = nArray;
       
-      filteredData = filteredData.sort((a, b) => b.total_seconds - a.total_seconds);
+      function sortByTotalSeconds(array) {
+        if (!Array.isArray(array) || array.length === 0) {
+            throw new Error('Input should be a non-empty array');
+        }
+      
+        return array.sort((a, b) => b.total_seconds - a.total_seconds);
+      }
+
+      filteredData = sortByTotalSeconds(filteredData)
       filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
