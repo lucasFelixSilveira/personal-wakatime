@@ -21,6 +21,39 @@ function gen_image(dado) {
           } else {
             let i = item;
             i.color = item.name == "Carla" ? "#1d1d1d" : i.color;
+            switch(item.name) {
+              case "C++": {
+                const add = 38;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "Zig": { 
+                const add = 96;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "Java": { 
+                const add = 74;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "Assembly": { 
+                const add = 36;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "newLISP": {
+                const add = 12;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                i.name = "eLisp";
+                break;
+              }
+            }
             return i;
           }
         })
