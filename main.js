@@ -86,7 +86,7 @@ function gen_image(dado) {
       const nArray = [];
       let i = 0;
       while( i < filteredData.length ) {
-        if( filteredData[i] ) 
+        if( filteredData[i] && filteredData[i].hours > 0 ) 
           nArray.push(filteredData[i++])
         else i++;
       }
@@ -102,7 +102,7 @@ function gen_image(dado) {
         let i = 0;
 
         while (i < n - 1) {
-          if (sortedArray[i].hours < sortedArray[i + 1].hours) {
+          if (sortedArray[i].total_seconds < sortedArray[i + 1].total_seconds) {
             [sortedArray[i], sortedArray[i + 1]] = [sortedArray[i + 1], sortedArray[i]];
             swapped = true;
           }
