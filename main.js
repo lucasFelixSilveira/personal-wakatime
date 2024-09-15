@@ -30,8 +30,6 @@ function gen_image(dado) {
         })
       } 
 
-      console.log(filteredData);
-
       if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
         filteredData = filteredData.map((item) => {
           if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
@@ -89,8 +87,6 @@ function gen_image(dado) {
       const realign = filteredData.map(item => item.hours);
       realign.sort((a, b) => b - a);
       filteredData = realign;
-      
-      console.log(filteredData);
 
       filteredData = data.filter(item => item.percent > 0);
 
