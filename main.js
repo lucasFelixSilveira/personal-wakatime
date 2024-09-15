@@ -83,14 +83,26 @@ function gen_image(dado) {
         })
       }
 
-      const nArray = [];
-      let i = 0;
-      while( i < filteredData.length ) {
-        if( filteredData[i] ) 
-          nArray.push(filteredData[i++])
-        else i++;
-      }
-      filteredData = nArray;
+      const sortedArray = [...array];
+      
+      let n = sortedArray.length;
+      let swapped;
+
+      do {
+        swapped = false;
+        let i = 0;
+
+        while (i < n - 1) {
+          if (sortedArray[i].hours < sortedArray[i + 1].hours) {
+            [sortedArray[i], sortedArray[i + 1]] = [sortedArray[i + 1], sortedArray[i]];
+            swapped = true;
+          }
+          i++;
+        }
+        n--; 
+      } while (swapped);
+
+      filteredData = sortedArray;
 
       
       const realign = filteredData.map(item => item.hours);
