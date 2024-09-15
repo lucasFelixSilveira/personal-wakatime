@@ -97,8 +97,9 @@ function gen_image(dado) {
       
         return array.sort((a, b) => b.total_seconds - a.total_seconds);
       }
-
+      console.log(filteredData[2]);
       filteredData = sortByTotalSeconds(filteredData)
+      console.log(filteredData[2]);
       filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
