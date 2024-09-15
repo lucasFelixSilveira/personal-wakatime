@@ -46,31 +46,31 @@ function gen_image(dado) {
               case "C++": {
                 const add = 90;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "Java": { 
                 const add = 38;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "Haskell": {
                 const add = 11;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "Makefile": {
                 const add = 30;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "Assembly": {
                 const add = 15;
                 i.hours += add;
-                i.total_seconds += (60^2) * add;
+                i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
             }
