@@ -53,6 +53,13 @@ function gen_image(dado) {
                 i.name = "eLisp";
                 break;
               }
+              case "Carla": {
+                const add = 120;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                i.name = "eLisp";
+                break;
+              }
             }
             return i;
           }
