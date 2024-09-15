@@ -51,6 +51,7 @@ function gen_image(dado) {
               }
             })();
             i.hours += add;
+            i.total_seconds += (60^2) * add;
             return i;
           } else return item;
         } else return item;
