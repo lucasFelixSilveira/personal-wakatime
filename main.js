@@ -12,14 +12,10 @@ function gen_image(dado) {
     function draw(data) {
       let filteredData = data;
 
-      filteredData = filteredData.map(async (item) => {
-        let i = item;
-        if( item.name == "newLISP" ) {
-          i.name = "eLisp"
-        }
-
+      filteredData = filteredData.map((item) => {
         if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
           if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
+            let i = item;
             i.percent = 0; 
             return i;
           } else {
@@ -29,33 +25,63 @@ function gen_image(dado) {
               return i;
             }
           }
-        } else if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
-          if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
-            i.percent = 0; 
-            return i;
-          } else if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
-            const add = await (() => new Promise((resolve) => {
-              switch(item.name) {
-                case "C": 
-                  return resolve(72)
-                case "C++":
-                  return resolve(90)
-                case "Java": 
-                  return resolve(38)
-                case "Haskell":
-                  return resolve(11)
-                case "Makefile":
-                  return resolve(30)
-                case "eLisp":
-                  return resolve(15)
-              }
-            }))();
-            i.hours += add;
-            i.total_seconds += (60^2) * add;
-            return i;
-          } else return item;
         } else return item;
       })
+
+      filteredData = filteredData.map((item) => {
+        if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
+          if( ["Text", "Roff", "Eiffel", "HTML"].includes(item.name) ) {
+            let i = item;
+            i.percent = 0; 
+            return i;
+          } else {
+            if( ["C", "C++", "Haskell", "Makefile", "Java", "eLisp"].includes(item.name) ) {
+              let i = item;
+              switch(item.name) {
+                case "C": { 
+                  const add = 72;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+                case "C++": {
+                  const add = 90;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+                case "Java": { 
+                  const add = 38;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+                case "Haskell": {
+                  const add = 11;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+                case "Makefile": {
+                  const add = 30;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+                case "eLisp": {
+                  const add = 15;
+                  i.hours += add;
+                  i.total_seconds += (60^2) * add;
+                  break;
+                }
+              }
+              return i;
+            }
+          }
+        } else return item;
+      })
+
+      filteredData = data.filter(item => item.percent > 0);
 
       function generateImage() {
         const itemHeight = 50;
