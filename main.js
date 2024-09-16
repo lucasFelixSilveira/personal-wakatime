@@ -13,8 +13,17 @@ function gen_image(dado) {
       let filteredData = data;
 
       if( dado.split('/')[0].slice(1) == 'lucasFelixSilveira' ) {
+        if(! filteredData.map(x => x.name).includes("Java") ) {
+          filteredData.push({
+            name: "Go",
+            minutes: 26,
+            hours: 0,
+            total_seconds: 0,
+            color: "#00add8"
+          })
+        }
         filteredData = filteredData.map((item) => {
-          if( ["JavaScript", "Python", "HTML", "CSS", "TypeScript"].includes(item.name) ) {
+          if( ["HTML", "CSS", "Text"].includes(item.name) ) {
             let i = item;
             i.delete = true; 
             return i;
@@ -55,6 +64,12 @@ function gen_image(dado) {
               }
               case "Carla": {
                 const add = 120;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "Go": {
+                const add = 43;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
