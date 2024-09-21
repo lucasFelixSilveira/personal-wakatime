@@ -37,6 +37,12 @@ function gen_image(dado) {
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
+              case "C": {
+                const add = 927;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
               case "Zig": { 
                 const add = 96;
                 i.hours += add;
