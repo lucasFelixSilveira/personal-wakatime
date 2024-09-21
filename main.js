@@ -37,8 +37,14 @@ function gen_image(dado) {
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
+              case "Rust": {
+                const add = 218;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
               case "C": {
-                const add = 927;
+                const add = 847;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
@@ -50,13 +56,13 @@ function gen_image(dado) {
                 break;
               }
               case "Java": { 
-                const add = 74;
+                const add = 264;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
               }
               case "Assembly": { 
-                const add = 36;
+                const add = 87;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
@@ -76,6 +82,12 @@ function gen_image(dado) {
               }
               case "Go": {
                 const add = 43;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+              case "JavaScript": {
+                const add = 192;
                 i.hours += add;
                 i.total_seconds += Math.floor((60 * 60) * add);
                 break;
