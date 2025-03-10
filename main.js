@@ -274,100 +274,6 @@ function gen_image(dado) {
   })
 }
 
-async function getLanguages(user) {
-  try {
-    const reposResponse = await axios.get(`https://api.github.com/users/${user}/repos`);
-    const repos = reposResponse.data;
-
-    const languageData = {};
-
-    for (const repo of repos) {
-      const languagesResponse = await axios.get(repo.languages_url);
-      const languages = languagesResponse.data;
-
-      for (const [language, lines] of Object.entries(languages)) {
-        if (!languageData[language]) {
-          languageData[language] = 0;
-        }
-        languageData[language] += lines;
-      }
-    }
-
-    return languageData;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Erro ao coletar dados do GitHub');
-  }
-}
-
-function generateLanguageImage(languageData) {
-  const canvas = createCanvas(800, 600);
-  const ctx = canvas.getContext('2d');
-  
-  const totalLines = Object.values(languageData).reduce((acc, lines) => acc + lines, 0);
-  const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']; 
-  let yPosition = 200;
-  const barHeight = 40;
-  const maxBarWidth = 700;
-  
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const startAngle = -0.5 * Math.PI;
-  let currentAngle = startAngle;
-  
-  const radius = 100;
-  ctx.translate(400, 100); 
-
-  let colorIndex = 0;
-  for (const [language, lines] of Object.entries(languageData)) {
-    const percentage = lines / totalLines;
-    const angle = percentage * 2 * Math.PI;
-    
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, currentAngle, currentAngle + angle);
-    ctx.lineTo(0, 0);
-    ctx.fillStyle = colors[colorIndex % colors.length];
-    ctx.fill();
-    
-    currentAngle += angle; 
-    colorIndex++;
-  }
-
-  ctx.resetTransform();
-  ctx.fillStyle = '#000000';
-  ctx.font = '14px Arial';
-  ctx.textAlign = 'center';
-  let labelYPosition = 40;
-  colorIndex = 0;
-  
-  for (const [language, lines] of Object.entries(languageData)) {
-    const percentage = lines / totalLines;
-    const angle = (percentage * 2 * Math.PI) / 2 + (colorIndex * (2 * Math.PI / Object.keys(languageData).length));
-    const x = 400 + Math.cos(angle) * (radius + 30);
-    const y = 100 + Math.sin(angle) * (radius + 30);
-    
-    ctx.fillText(`${language}: ${(percentage * 100).toFixed(1)}%`, x, y);
-    colorIndex++;
-  }
-
-  yPosition = 250; 
-  for (const [language, lines] of Object.entries(languageData)) {
-    const barWidth = (lines / totalLines) * maxBarWidth;
-    
-    ctx.fillStyle = colors[colorIndex % colors.length];
-    ctx.fillRect(100, yPosition, barWidth, barHeight);
-    
-    ctx.fillStyle = '#000000';
-    ctx.fillText(`${language} - ${lines} lines`, 10, yPosition + barHeight / 2);
-    
-    yPosition += barHeight + 10;
-    colorIndex++;
-  }
-
-  return canvas.toBuffer('image/png');
-}
-
 const express = require("express");
 const app = express();
 
@@ -376,18 +282,5 @@ app.get('/timer', async (req, res) => {
   res.set('Content-Type', 'image/png');
   res.send(await gen_image(`@${username}/${key}`));
 })
-
-app.get('/image/:user', async (req, res) => {
-  const user = req.params.user;
-
-  try {
-    const languageData = await getLanguages(user);
-    const imageData = generateLanguageImage(languageData);
-    res.set('Content-Type', 'image/png');
-    res.send(imageData);
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao gerar a imagem' });
-  }
-});
 
 app.listen(8080);
