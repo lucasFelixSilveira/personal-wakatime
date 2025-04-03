@@ -98,6 +98,14 @@ function gen_image(dado) {
         })
       } 
 
+      if( dado.split('/')[0].slice(1) == 'Joao-Guil' ) {
+        if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script"].includes(item.name) ) {
+          let i = item;
+          i.delete = true; 
+          return i;
+        }
+      }
+
       if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
         if(! filteredData.map(x => x.name).includes("Java") ) {
           filteredData.push({
@@ -165,6 +173,8 @@ function gen_image(dado) {
             }
             return i;
           }
+
+          
         })
       }
 
