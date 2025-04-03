@@ -99,11 +99,15 @@ function gen_image(dado) {
       } 
 
       if( dado.split('/')[0].slice(1) == 'SunnYu' ) {
-        if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script"].includes(item.name) ) {
-          let i = item;
-          i.delete = true; 
-          return i;
-        }
+        filteredData = filteredData.map((item) => {
+          if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script"].includes(item.name) ) {
+            let i = item;
+            i.delete = true; 
+            return i;
+          }
+
+          return item;
+        })
       }
 
       if( dado.split('/')[0].slice(1) == 'EngBandeira' ) {
