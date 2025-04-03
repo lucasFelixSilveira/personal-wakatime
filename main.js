@@ -100,13 +100,24 @@ function gen_image(dado) {
 
       if( dado.split('/')[0].slice(1) == 'SunnYu' ) {
         filteredData = filteredData.map((item) => {
-          if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script"].includes(item.name) ) {
+          if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script", "Other"].includes(item.name) ) {
             let i = item;
             i.delete = true; 
             return i;
+          } else {
+            let i = item;
+            i.color = item.name == "Carla" ? "#1d1d1d" : i.color;
+            switch(item.name) {
+              case "Carla": {
+                const add = 763;
+                i.hours += add;
+                i.total_seconds += Math.floor((60 * 60) * add);
+                break;
+              }
+            }
+            return i;
           }
 
-          return item;
         })
       }
 
