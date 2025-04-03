@@ -98,7 +98,7 @@ function gen_image(dado) {
         })
       } 
 
-      if( dado.split('/')[0].slice(1) == 'Joao-Guil' ) {
+      if( dado.split('/')[0].slice(1) == 'SunnYu' ) {
         if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script"].includes(item.name) ) {
           let i = item;
           i.delete = true; 
