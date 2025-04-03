@@ -99,7 +99,7 @@ function gen_image(dado) {
       } 
 
       if( dado.split('/')[0].slice(1) == 'SunnYu' ) {
-        filteredData.push({name: "Carla", hours: 0, total_seconds: 0});
+        filteredData.push({name: "Carla", hours: 0, total_seconds: 0, minutes: 99});
         filteredData = filteredData.map((item) => {
           if( ["Python", "JSON", "Markdown", "Makefile", "Vim Script", "Other"].includes(item.name) ) {
             let i = item;
