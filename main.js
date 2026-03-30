@@ -413,6 +413,7 @@ const LANGUAGE_COLORS = {
   HTML: "#e34c26",
   CSS: "#563d7c",
   Shell: "#89e051",
+  Perl: "#0297c1",
   Zig: "#ec915c",
   Assembly: "#6E4C13",
   Haskell: "#5e5086",
@@ -488,10 +489,10 @@ function drawPieChart(langTotals) {
         else yRight += 35;
     });
 
-    ctx.fillStyle = "white";
-    ctx.font = "bold 28px Arial";
+    ctx.fillStyle = "#ff6e96";
+    ctx.font = "800 34px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("GitHub Language Usage", width / 2, 50);
+    ctx.fillText("Most used languages", 10, 50);
 
     return canvas.toBuffer("image/png");
 }
