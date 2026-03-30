@@ -428,12 +428,15 @@ function drawPieChart(langTotals) {
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext("2d");
 
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "000";
     ctx.fillRect(0, 0, width, height);
 
-    const total = Object.values(langTotals).reduce((a, b) => a + b, 0);
+    let entries = Object.entries(langTotals)
+        .sort((a, b) => b[1] - a[1]);
 
-    const entries = Object.entries(langTotals).sort((a, b) => b[1] - a[1]);
+    entries = entries.slice(0, 6);
+
+    const total = entries.reduce((acc, [, value]) => acc + value, 0);
 
     let start = 0;
 
