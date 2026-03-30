@@ -671,13 +671,14 @@ app.get("/timer", async (req, res) => {
 
 app.get("/amount", async (req, res) => {
     LANGUAGE_COLORS = LANGUAGE_COLORS_ORIGINAL;
-    const { username, presset } = req.query;
+    const { username, presset, remove } = req.query;
 
     try {
         let langs = await getGithubLanguages(username);
         if( presset === "cute" ) langs = applyCutePreset(langs, { _cute: true });
         const image = drawPieChart(langs, {
             add: { "Meow": presset === "cute" ? 10000 : 0 },
+            remove: remove ? remove.split(",") : undefined,
             limit: 6
         });
 
