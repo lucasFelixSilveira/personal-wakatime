@@ -411,14 +411,71 @@ const LANGUAGE_COLORS = {
   Rust: "#dea584",
   "C++": "#f34b7d",
   C: "#555555",
+  CSharp: "#178600",
+  Kotlin: "#A97BFF",
+  Swift: "#ffac45",
+  Dart: "#00B4AB",
+  Ruby: "#701516",
+  PHP: "#4F5D95",
+  Elixir: "#6e4a7e",
+  Erlang: "#B83998",
+  Scala: "#c22d40",
+  Haxe: "#df7900",
+  ObjectiveC: "#438eff",
+
   HTML: "#e34c26",
   CSS: "#563d7c",
+  SCSS: "#c6538c",
+  Less: "#1d365d",
+
   Shell: "#89e051",
+  Bash: "#4EAA25",
+  PowerShell: "#012456",
+  Fish: "#4aae47",
+
+  SQL: "#e38c00",
+  PLpgSQL: "#336790",
+
+  JSON: "#292929",
+  YAML: "#cb171e",
+  TOML: "#9c4221",
+  XML: "#0060ac",
+
+  Markdown: "#083fa1",
+
   Perl: "#0297c1",
+  Lua: "#000080",
   Zig: "#ec915c",
   Assembly: "#6E4C13",
   Haskell: "#5e5086",
-  Lua: "#000080",
+  OCaml: "#3be133",
+  Nim: "#ffc200",
+  Crystal: "#000100",
+  V: "#5d87bf",
+
+  R: "#198CE7",
+  Julia: "#a270ba",
+  Matlab: "#e16737",
+  Octave: "#0790c0",
+
+  Fortran: "#4d41b1",
+  COBOL: "#005ca5",
+  Ada: "#02f88c",
+
+  GraphQL: "#e10098",
+  ProtoBuf: "#d1a00f",
+
+  Svelte: "#ff3e00",
+  Vue: "#41b883",
+  Angular: "#dd0031",
+  React: "#61dafb",
+
+  WebAssembly: "#04133b",
+
+  Dockerfile: "#384d54",
+  Makefile: "#427819",
+  CMake: "#DA3434",
+
   default: "#999999",
 };
 
