@@ -476,32 +476,88 @@ const LANGUAGE_COLORS = {
   Makefile: "#427819",
   CMake: "#DA3434",
 
+  Meow: "#ff0678",
+
   default: "#999999",
 };
 
-function drawPieChart(langTotals) {
+function applyCutePreset(langTotals, options = {}) {
+    const pastelPalette = [
+        "#ff9ecb",
+        "#ffb3d9",
+        "#ffcce6",
+        "#e6a6ff",
+        "#d580ff",
+        "#c266ff",
+        "#ff80bf",
+        "#ff66a3"
+    ];
+
+    const cuteBoost = {
+        Rust: 1.6,
+        C: 1.8,
+        Swift: 2
+    };
+
+    let i = 0;
+
+    for (const lang in langTotals) {
+        LANGUAGE_COLORS[lang] = pastelPalette[i % pastelPalette.length];
+        i++;
+    }
+
+    for (const lang in cuteBoost) {
+        if (langTotals[lang]) {
+            langTotals[lang] = Math.floor(langTotals[lang] * cuteBoost[lang]);
+        }
+    }
+
+    options._cute = true;
+    return langTotals;
+}
+
+function drawPieChart(langTotals, options = {}) {
     const width = 900;
     const height = 870;
     const radius = 200;
 
+    const {
+        add = {},
+        remove = [],
+        override = {},
+        limit = 6
+    } = options;
+
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext("2d");
 
-    ctx.fillStyle = "000";
+    ctx.fillStyle = options._cute ? "#50003f" : "#000";
     ctx.fillRect(0, 0, width, height);
 
-    let entries = Object.entries(langTotals)
-        .sort((a, b) => b[1] - a[1]);
+    let modified = { ...langTotals };
 
-    entries = entries.slice(0, 6);
+    for (const lang of remove) delete modified[lang];
+    for (const [lang, value] of Object.entries(add)) {
+        modified[lang] = (modified[lang] || 0) + value;
+    }
+    for (const [lang, value] of Object.entries(override)) {
+        modified[lang] = value;
+    }
 
-    const total = entries.reduce((acc, [, value]) => acc + value, 0);
+    let entries = Object.entries(modified)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit);
+
+    const total = entries.reduce((acc, [, v]) => acc + v, 0);
 
     let start = 0;
 
     entries.forEach(([lang, value]) => {
         const slice = (value / total) * Math.PI * 2;
         const color = LANGUAGE_COLORS[lang] || LANGUAGE_COLORS.default;
+
+        ctx.shadowColor = color;
+        ctx.shadowBlur = options._cute ? 25 : 10;
 
         ctx.beginPath();
         ctx.moveTo(width / 2, 370);
@@ -511,10 +567,52 @@ function drawPieChart(langTotals) {
         ctx.fillStyle = color;
         ctx.fill();
 
+        ctx.shadowBlur = 0;
+
         start += slice;
     });
 
-    ctx.font = "20px Arial";
+    if (options._cute) {
+        ctx.save();
+
+        ctx.globalAlpha = 0.15;
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath();
+        ctx.arc(width / 2, 370, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.globalAlpha = 0.4;
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        const gradient = ctx.createRadialGradient(
+            width / 2 - 60,
+            370 - 60,
+            10,
+            width / 2,
+            370,
+            radius
+        );
+
+        gradient.addColorStop(0, "rgba(255,255,255,0.4)");
+        gradient.addColorStop(1, "rgba(255,255,255,0)");
+
+        ctx.globalAlpha = 0.6;
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(width / 2, 370, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    if (options._cute) {
+        ctx.beginPath();
+        ctx.arc(width / 2, 370, radius - 40, 0, Math.PI * 2);
+        ctx.fillStyle = "#1a001f";
+        ctx.fill();
+    }
 
     const startY = 670;
     let xLeft = 100;
@@ -531,7 +629,6 @@ function drawPieChart(langTotals) {
         const color = LANGUAGE_COLORS[lang] || LANGUAGE_COLORS.default;
 
         const isLeft = index < half;
-
         const x = isLeft ? xLeft : xRight;
         const y = isLeft ? yLeft : yRight;
 
@@ -541,17 +638,23 @@ function drawPieChart(langTotals) {
         ctx.fill();
 
         ctx.fillStyle = "white";
+        ctx.fillStyle = options._cute ? "#ffe6f2" : "white";
         ctx.font = "42px Arial";
-        ctx.fillText(text, x + 20 + 15, y - 2.5);
+        ctx.fillText(text, x + 35, y - 2.5);
 
-        if (isLeft) yLeft += 35 + 20;
-        else yRight += 35 + 20;
+        if (isLeft) yLeft += 55;
+        else yRight += 55;
     });
 
-    ctx.fillStyle = "#ff6e96";
+    ctx.fillStyle = options._cute ? "#ffb3d9" : "#ff6e96";
     ctx.font = "bold 60px Roboto";
     ctx.textAlign = "center";
-    ctx.fillText("Most used languages", 390, 80);
+
+    const title = options._cute
+        ? "🌸✨ Most used languages ✨🌸"
+        : "Most used languages";
+
+    ctx.fillText(title, 450, 80);
 
     return canvas.toBuffer("image/png");
 }
@@ -566,11 +669,15 @@ app.get("/timer", async (req, res) => {
 });
 
 app.get("/amount", async (req, res) => {
-    const { username } = req.query;
+    const { username, presset } = req.query;
 
     try {
-        const langs = await getGithubLanguages(username);
-        const image = drawPieChart(langs);
+        let langs = await getGithubLanguages(username);
+        if( presset === "cute" ) langs = applyCutePreset(langs, { _cute: true });
+        const image = drawPieChart(langs, {
+            add: { "Meow": presset === "cute" ? 10000 : 0 },
+            limit: 6
+        });
 
         res.set("Content-Type", "image/png");
         res.send(image);
