@@ -519,7 +519,7 @@ function applyCutePreset(langTotals, options = {}) {
 
 function drawPieChart(langTotals, options = {}) {
     const width = 900;
-    const height = 870;
+    let height = 870;
     const radius = 200;
 
     const {
@@ -528,6 +528,9 @@ function drawPieChart(langTotals, options = {}) {
         override = {},
         limit = 6
     } = options;
+
+    const times = (options.limit - 6) % 2 ? (options.limit - 6) / 2 : (options.limit - 5) / 2;
+    height += times * 20;
 
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext("2d");
@@ -671,7 +674,7 @@ app.get("/timer", async (req, res) => {
 
 app.get("/amount", async (req, res) => {
     LANGUAGE_COLORS = LANGUAGE_COLORS_ORIGINAL;
-    const { username, presset, remove } = req.query;
+    const { username, presset, remove, limit } = req.query;
 
     try {
         let langs = await getGithubLanguages(username);
@@ -679,7 +682,7 @@ app.get("/amount", async (req, res) => {
         const image = drawPieChart(langs, {
             add: { "Meow": presset === "cute" ? 10000 : 0 },
             remove: remove ? remove.split(",") : undefined,
-            limit: 6
+            limit: limit || 6
         });
 
         res.set("Content-Type", "image/png");
