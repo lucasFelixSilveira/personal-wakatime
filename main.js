@@ -3,6 +3,7 @@ const fs = require("fs");
 require("dotenv").config();
 
 registerFont(__dirname + "/Arial.ttf", { family: "Arial" });
+registerFont(__dirname + "/Roboto.ttf", { family: "Roboto" });
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
@@ -423,7 +424,7 @@ const LANGUAGE_COLORS = {
 
 function drawPieChart(langTotals) {
     const width = 900;
-    const height = 700;
+    const height = 870;
     const radius = 200;
 
     const canvas = createCanvas(width, height);
@@ -446,8 +447,8 @@ function drawPieChart(langTotals) {
         const color = LANGUAGE_COLORS[lang] || LANGUAGE_COLORS.default;
 
         ctx.beginPath();
-        ctx.moveTo(width / 2, 260);
-        ctx.arc(width / 2, 260, radius, start, start + slice);
+        ctx.moveTo(width / 2, 370);
+        ctx.arc(width / 2, 370, radius, start, start + slice);
         ctx.closePath();
 
         ctx.fillStyle = color;
@@ -458,7 +459,7 @@ function drawPieChart(langTotals) {
 
     ctx.font = "20px Arial";
 
-    const startY = 500;
+    const startY = 670;
     let xLeft = 100;
     let xRight = 500;
     let yLeft = startY;
@@ -478,21 +479,22 @@ function drawPieChart(langTotals) {
         const y = isLeft ? yLeft : yRight;
 
         ctx.beginPath();
-        ctx.arc(x, y - 5, 8, 0, Math.PI * 2);
+        ctx.arc(x, y - 15, 14, 0, Math.PI * 2);
         ctx.fillStyle = color;
         ctx.fill();
 
         ctx.fillStyle = "white";
-        ctx.fillText(text, x + 20, y);
+        ctx.font = "42px Arial";
+        ctx.fillText(text, x + 20 + 15, y - 2.5);
 
-        if (isLeft) yLeft += 35;
-        else yRight += 35;
+        if (isLeft) yLeft += 35 + 20;
+        else yRight += 35 + 20;
     });
 
     ctx.fillStyle = "#ff6e96";
-    ctx.font = "800 34px Arial";
+    ctx.font = "bold 60px Roboto";
     ctx.textAlign = "center";
-    ctx.fillText("Most used languages", 10, 50);
+    ctx.fillText("Most used languages", 390, 80);
 
     return canvas.toBuffer("image/png");
 }
