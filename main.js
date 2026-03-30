@@ -480,6 +480,7 @@ const LANGUAGE_COLORS = {
 
   default: "#999999",
 };
+const LANGUAGE_COLORS_ORIGINAL = LANGUAGE_COLORS;
 
 function applyCutePreset(langTotals, options = {}) {
     const pastelPalette = [
@@ -669,6 +670,7 @@ app.get("/timer", async (req, res) => {
 });
 
 app.get("/amount", async (req, res) => {
+    LANGUAGE_COLORS = LANGUAGE_COLORS_ORIGINAL;
     const { username, presset } = req.query;
 
     try {
