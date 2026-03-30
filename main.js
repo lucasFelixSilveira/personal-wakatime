@@ -402,7 +402,7 @@ async function getGithubLanguages(username) {
     return langTotals;
 }
 
-const LANGUAGE_COLORS = {
+let LANGUAGE_COLORS = {
   JavaScript: "#f1e05a",
   TypeScript: "#3178c6",
   Python: "#3572A5",
